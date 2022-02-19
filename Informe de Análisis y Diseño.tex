@@ -1,0 +1,90 @@
+\documentclass{ieeeojies}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\begin{document}
+\tableofcontents
+
+\title{Informe de Análisis y Diseño Parcial 1}
+\author{\uppercase{YESIKA-MILENA CARVAJAL-DÍAZ}\authorrefmark{1}, \uppercase{ · NICOLL-CAROLINE CHAZATAR-YAMPUEZAN}\authorrefmark{2}, \uppercase{  · ANDRES-FELIPE ZULUAGA-ORTÍZ}\authorrefmark{3}}
+
+
+\address[1]{Universidad de Antioquia, Medellín, Colombia.}
+\address[2]{Ingeniería Electrónica, Facultad de Ingeniería, Universidad de Antioquia.}
+
+
+
+
+\begin{abstract}
+\end{abstract}
+
+
+\begin{keywords}
+
+\end{keywords}
+
+
+
+\titlepgskip=-15pt
+
+\maketitle
+
+\section{Introduction}
+
+\section{RESÚMEN}
+
+\section{OBJETIVOS}
+
+\subsection{GENERALES}
+
+\subsection{ESPECÍFICOS}
+
+\section{DESARROLLO}
+
+\begin{enumerate}
+\item \textbf{[20] Investigar y explicar con sus propias palabras como utilizar el circuito integrado 74HC595. En esta parte mostrar un ejemplo de uso del circuito integrado primero de forma independiente con pulsadores o switches y luego usando Arduino, y detallar en el informe la utilidad que puede darle a este elemento para la solución del problema. Nota: puede ser de gran ayuda dar una revisión a la hoja de datos.} 
+
+
+Los pines de alimentación del integrado son el pin 8 para tierra y 16 para Vcc.
+Se debe generar una diferencia de potencial en los pines MA y OE para habilitar las salida del integrado, por lo que el pin OE se conecta a tierra y MA a Vcc.
+
+Los pines SH-CP, DS, ST-CP controlan el ingreso de los bits que se reproducen en las salidas del integrado. El pin DS da el valor del bit, el SH-CP es la señal para tomar el bit de DS, y STCP muestra los bits almacenados previamente en las salidas del integrado. Las señales reproducidas inician desde la salida Q0 hasta Q7.
+
+El circuito integrado es útil en la realización de la práctica en la creación del bloque Sistema que paraleliza los datos. El 74HC595 nos ayuda a paralelizar los bytes en sus 8 puertos de salida para que estos entren al Sistema de desencriptación.
+
+
+
+
+\item \textbf{[20] Realizar una comunicación entre dos Arduinos usando puertos digitales, esto con el fin de que pueda probar como enviar bits desde uno y ser recibidos por el otro de forma
+exitosa. Para esto, incluya en el informe de forma ordenada que consideraciones tuvo en
+cuenta para esta parte, y en una carpeta en el repositorio incluya los códigos usados para
+cada Arduino.}
+
+
+
+
+\end{enumerate}
+
+\section{CONCLUSIONES}
+
+\appendices
+
+\section*{BIBLIOGRAFÍA}
+
+
+
+%% these lines used to import a separate ".bib" for the bibliografy.
+\bibliographystyle{bibliography/IEEEtranIES}
+\bibliography{bibliography/IEEEabrv,bibliography/mybibfile}
+
+\EOD
+
+\end{document}
