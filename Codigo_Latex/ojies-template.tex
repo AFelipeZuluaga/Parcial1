@@ -50,9 +50,21 @@
 
 \section{OBJETIVOS}
 
-\subsection{GENERALES}
+\subsection{GENERAL}
+
+Adquirir herramientas y conocimientos de apoyo para el análisis teórico del desarrollo del proyecto parcial.
 
 \subsection{ESPECÍFICOS}
+
+\begin{itemize}
+
+        \item Desarrollar la capacidad de solución de problemas.
+        
+        \item Evaluar la capacidad del estudiante para trabajar con Arduino.
+        
+        \item Usar de manera adecuada las funciones de la
+plataforma Arduino explicadas en clase que permiten controlar el puerto serial y los puertos digitales.
+\end{itemize}
 
 \section{METODOLOGÍA}
 
@@ -72,7 +84,7 @@ PC2: Este bloque recibe la señal del mensaje real, desde el sistema de recepci�
 
 \end{enumerate}
 
-\subsection{Circuito integrado 74HC595}\\
+\subsection{Circuito integrado 74HC595}
 El circuito integrado es útil en la realización de la práctica en la creación del bloque Sistema que paraleliza los datos. El 74HC595 nos ayuda a paralelizar los bytes en sus 8 puertos de salida para que estos entren al Sistema de desencriptación.\\
 
 Los pines de alimentación del integrado son el pin 8 para tierra y 16 para Vcc.\\
@@ -92,13 +104,86 @@ Los pines SH-CP(11), DS(14), ST-CP(12) controlan el ingreso de los bits que se r
 
 
 
-\subsection{Comunicación entre Arduinos}\\
+\subsection{Comunicación entre Arduinos}
+Para realizar la comunicación entre arduinos realizamos dos señales en el arduino transmisor (Arduino 1), las cuales son la señal de datos y la del reloj. \\
+
+Para las señales de datos se utilizaron varias señales de prueba. Las señales de prueba para los datos fueron las siguientes:
+\begin{itemize}
+\item 01110010
+\item 00110101
+\item 10001100
+\item 11111101010100101
+\end{itemize}
+
+La lectura de los datos se hará con cada flanco de subida del reloj.\\
+
+Las señales de prueba se realizaron en el loop de Arduino y se utilizaron funciones delay. Los tiempos de delay se utilizan para entender cuándo se deben hacer modificaciones tanto en las señales de datos como en las del reloj.\\
+
+Por ejemplo; para la primera señal de prueba para los datos, las señales de datos y de reloj se pueden observar como las señales de la figura 2, en donde t2 corresponde al tiempo entre la generación del bit de la señal de dato y el flanco de subida del reloj, y t1 corresponde al periodo de la señal de reloj.\\
 
 
+\begin{figure}[h]
+\includegraphics[width=12cm]{Prueba_datos_y_clock.PNG}
+\centering
+\caption{Señales para la primera prueba de la señal de dato}
+\label{fig:Prueba_datos_y_clock.PNG}
+\end{figure}
+
+
+Para el t2 de la prueba, su valor es de 1 segundo. Se utilizan 500 milisegundos para el valor en alta y 500 milisegundos en baja. Para t1 se utiliza un valor de 250 milisegundos.\\
+
+
+La figura 3 muestra la interconexión entre los arduinos de transmisión (arduino 1) y de recepción (arduino 2).\\
+
+
+\begin{figure}[h]
+\includegraphics[width=7cm]{interconexión del arduino.PNG}
+\centering
+\caption{Interconexión de los Arduinos}
+\label{fig:interconexión del arduino.PNG}
+\end{figure}
+
+Basados en la figura 2, se realizan los códigos en Arduino.\\
+
+
+Las figuras 4, 5 y 6 muestran el código en el arduino de transmisión.\\
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{codigo_arduino1_1.PNG}
+\centering
+\caption{Primera parte del código del Arduino transmisor.}
+\label{fig:codigo_arduino1_1.PNG}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{codigo_arduino1_2.PNG}
+\centering
+\caption{Segunda parte del código del Arduino transmisor.}
+\label{fig:codigo_arduino1_2.PNG}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{codigo_arduino1_3.PNG}
+\centering
+\caption{Tercera parte del código del Arduino transmisor.}
+\label{fig:codigo_arduino1_3.PNG}
+\end{figure}
+
+
+La figura 7 muestra el código en el arduino de recepción.\\
+
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{codigo_arduino2.PNG}
+\centering
+\caption{código del Arduino receptor.}
+\label{fig:codigo_arduino2.PNG}
+\end{figure}
 
 
 \section{DESARROLLO}
 
+Esta secciónn se presentará en el informe de implementación.
 
 
 \section{CONCLUSIONES} \label{conclulsion}
