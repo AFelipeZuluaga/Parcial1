@@ -45,14 +45,28 @@
 \newpage
 
 \section{INTRODUCCIÓN}
+En este informe se habla sobre el análisis realizado al proyecto parcial que se entregará próximamente. Se estudia el funcionamiento del circuito integrado 74HC595, se profundiza en el funcionamiento del Arduino y en comandos para su funcionamiento, a su uso en la plataforma de Tinkercad y se observa la interconexión entre arduinos.
 
 \section{RESÚMEN}
+El informe busca obtener herramientas y conocimiento que ayuden a realizar el proyecto del curso de Informática II. Se analiza el proyecto de forma general y además se profundiza en los puntos referentes al circuito integrado 74HC595, en las señales de dato y de reloj y en la interconexión entre arduinos, además de sus códigos. Se concluye la utilidad de las herramientas Tinkercad, Arduino, C++ y del circuito integrado 74HC595.
 
 \section{OBJETIVOS}
 
-\subsection{GENERALES}
+\subsection{GENERAL}
+
+Adquirir herramientas y conocimientos de apoyo para el análisis teórico del desarrollo del proyecto parcial.
 
 \subsection{ESPECÍFICOS}
+
+\begin{itemize}
+
+        \item Desarrollar la capacidad de solución de problemas.
+        
+        \item Evaluar la capacidad del estudiante para trabajar con Arduino.
+        
+        \item Usar de manera adecuada las funciones de la
+plataforma Arduino explicadas en clase que permiten controlar el puerto serial y los puertos digitales.
+\end{itemize}
 
 \section{METODOLOGÍA}
 
@@ -72,15 +86,16 @@ PC2: Este bloque recibe la señal del mensaje real, desde el sistema de recepci�
 
 \end{enumerate}
 
-\subsection{Circuito integrado 74HC595}\\
+\subsection{Circuito integrado 74HC595}
 El circuito integrado es útil en la realización de la práctica en la creación del bloque Sistema que paraleliza los datos. El 74HC595 nos ayuda a paralelizar los bytes en sus 8 puertos de salida para que estos entren al Sistema de desencriptación.\\
 
 Los pines de alimentación del integrado son el pin 8 para tierra y 16 para Vcc.\\
 
 Se debe generar una diferencia de potencial en los pines MA y OE para habilitar las salida del integrado, por lo que el pin OE se conecta a tierra y MA a Vcc.\\
 
-Los pines SH-CP(11), DS(14), ST-CP(12) controlan el ingreso de los bits que se reproducen en las salidas del integrado. El pin DS da el valor del bit, el SH-CP es la señal para tomar el bit de DS, y ST-CP muestra los bits almacenados previamente en las salidas del integrado. Las señales reproducidas inician desde la salida Q0 hasta Q7, que corresponden respectivamente a los pines 15 y 1-7.\\
+Los pines SH-CP(11), DS(14), ST-CP(12) controlan el ingreso de los bits que se reproducen en las salidas del integrado. El pin DS da el valor del bit, el SH-CP es la señal para tomar el bit de DS, y ST-CP muestra los bits almacenados previamente en las salidas del integrado. Las señales reproducidas inician desde la salida Q0 hasta Q7, que corresponden respectivamente a los pines 15 y 1-7. \cite{youtube}\\
 
+Para el uso del circuito integrado independiente se realiza el monje de la figura 1, en donde el switch nos da el valor del bit, el botón izquiedo almacena el bit, y el botón derecho manda la señal al circuito para que los bits sean visibles.
 
 \begin{figure}[h]
 \includegraphics[width=7cm]{74HC595.jpg}
@@ -92,22 +107,114 @@ Los pines SH-CP(11), DS(14), ST-CP(12) controlan el ingreso de los bits que se r
 
 
 
-\subsection{Comunicación entre Arduinos}\\
+\subsection{Comunicación entre Arduinos}
+Para realizar la comunicación entre arduinos realizamos dos señales en el arduino transmisor (Arduino 1), las cuales son la señal de datos y la del reloj. \\
+
+Para las señales de datos se utilizaron varias señales de prueba. Las señales de prueba para los datos fueron las siguientes:
+\begin{itemize}
+\item 01110010
+\item 00110101
+\item 10001100
+\item 11111101010100101
+\end{itemize}
+
+La lectura de los datos se hará con cada flanco de subida del reloj.\\
+
+Las señales de prueba se realizaron en el loop de Arduino y se utilizaron funciones delay. Los tiempos de delay se utilizan para entender cuándo se deben hacer modificaciones tanto en las señales de datos como en las del reloj.\\
+
+Por ejemplo; para la primera señal de prueba para los datos, las señales de datos y de reloj se pueden observar como las señales de la figura 2, en donde t2 corresponde al tiempo entre la generación del bit de la señal de dato y el flanco de subida del reloj, y t1 corresponde al periodo de la señal de reloj.\\
+
+\begin{figure}[h]
+\includegraphics[width=12cm]{Prueba_datos_y_clock.jpeg}
+\centering
+\caption{Señales para la primera prueba de la señal de dato}
+\label{fig:Prueba_datos_y_clock.jpeg}
+\end{figure}
+
+Para el t2 de la prueba, su valor es de 1 segundo. Se utilizan 500 milisegundos para el valor en alta y 500 milisegundos en baja. Para t1 se utiliza un valor de 250 milisegundos.\\
 
 
+Para la interconexión entre los arduinos se realiza el monje de la figura 3, en donde en el arduino 1 el puerto 6 es la señal del reloj, el puerto 7 es la del bit a recolectar, y el puerto 6 del arduino 2 es el bit que se recibió visto como flanco.
+
+
+\begin{figure}[h]
+\includegraphics[width=7cm]{interconexión del arduino.PNG}
+\centering
+\caption{Interconexión de los Arduinos}
+\label{fig:interconexión del arduino.PNG}
+\end{figure}
+
+Basados en la figura 2, se realizan los códigos en Arduino.\\
+
+
+Las figuras 4, 5 y 6 muestran el código en el arduino de transmisión.\\
+
+\newpage
+
+\begin{figure}[h]
+\includegraphics[width=8cm]{codigo_arduino1_1.PNG}
+\centering
+\caption{Primera parte del código del Arduino transmisor.}
+\label{fig:codigo_arduino1_1.PNG}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+\includegraphics[width=5cm]{codigo_arduino1_2.PNG}
+\centering
+\caption{Segunda parte del código del Arduino transmisor.}
+\label{fig:codigo_arduino1_2.PNG}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+\includegraphics[width=5cm]{codigo_arduino1_3.PNG}
+\centering
+\caption{Tercera parte del código del Arduino transmisor.}
+\label{fig:codigo_arduino1_3.PNG}
+\end{figure}
+
+
+La figura 7 muestra el código en el arduino de recepción.\\
+
+\newpage
+
+
+\begin{figure}[h]
+\includegraphics[width=7cm]{codigo_arduino2.PNG}
+\centering
+\caption{código del Arduino receptor.}
+\label{fig:codigo_arduino2.PNG}
+\end{figure}
+
+\subsection{Análisis del parcial}
+	
+	Primero se crearía el código con el cual generaremos los datos que saldrán desde el PC1 hacia el primer Arduino, el cual transformará los datos recibidos en binario. 
+Luego creamos la conexión entre ambos arduinos en tinkercad y de manera simultánea conectamos el circuito integrado 74HC595 para paralelizar el binario.
+Después crearemos el código de cada arduino. 
+Posteriormente haremos uso de las compuertas lógicas para verificar la bandera que recibirá el arduino 2; esto se hará en un código de C++, que luego será adaptado al arduino.
+Luego de conectar el PC2(Pantalla LCD), y completar el circuito, se implementará una serie de pruebas para verificar el correcto funcionamiento del sistema de comunicación. 
 
 
 \section{DESARROLLO}
 
+Esta secciónn se presentará en el informe de implementación.\\
 
 
 \section{CONCLUSIONES} \label{conclulsion}
+\begin{itemize}
+\item La plataforma de Tinkercad, el microcontrolador Arduino, el lenguaje C++ y el circuito integrado 74HC575 son piezas claves tanto para la realización de este proyecto como para la realización de otros proyectos prácticos.
+\item El microcontrolador Arduino es útil para el envío de información a otras plataformas para otros lenguajes de programación, y también a otros arduinos.
+\item El uso del circuito integrado es útil para el envío paralelo de los datos.
 
-    
+\end{itemize}
+
+\section{REFERENCIAS}    
 
 \bibliographystyle{IEEEtran}
-%\bibliography{references}
 
-%\cite{referencia}
+\bibliography{references}
 
 \end{document}
