@@ -1,0 +1,64 @@
+
+  bool primer_digito=1;
+  String uno="AAAAAAAA";
+  String dos="AAAAAAAA";
+  String tres="AAAAAAAA";
+  String cuatro="AAAAAAAA";
+  String cinco="AAAAAAAA";
+	String seis="AAAAAAAA";	//String de más que guarda la clave
+//
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(3, INPUT);	//Señal de bandera
+  pinMode(7, INPUT);	//Señal de reloj
+  pinMode(8, INPUT);	//Señal de datos
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop()
+{ 
+          uno=dos;
+          dos=tres;
+          tres=cuatro;
+          cuatro=cinco;
+          cinco=seis;
+    int j=0;
+    while(j<8){
+      if(digitalRead(7)){     	//Si el reloj es 1.  
+        if(digitalRead(8)){		//Si el dato es 1.
+          seis[j]='1';
+        }
+        else{				//Si el dato es 0
+          seis[j]='0';
+        } 
+        j++;
+        delay(600);		//Para asegurar que en la próxima lectura del reloj, este ya haya bajado a 0.
+      }
+  }
+  
+//  Serial.print("String 1: ");
+ //   Serial.println(uno);
+    
+ // Serial.print("String 2: ");
+  //  Serial.println(dos);
+    
+//  Serial.print("String 3: ");
+//    Serial.println(tres);
+    
+//  Serial.print("String 4: ");
+//    Serial.println(cuatro);
+    
+//  Serial.print("String 5: ");
+//    Serial.println(cinco);
+    
+//  Serial.print("String 6: ");
+//    Serial.println(seis);
+    
+  
+  if(digitalRead(3)){
+    //Cambie los String uno-cinco por enteros
+    //Compare los enteros uno-cinco para saber cuál es mayor
+    //Imprima el mayor
+  }
+}

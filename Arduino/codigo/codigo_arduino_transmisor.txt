@@ -1,4 +1,4 @@
-
+    
 void setup()
 {
     Serial.begin(9600);
@@ -10,7 +10,7 @@ void setup()
 }
 
 void loop(){
-int datos []={2, 4, 1, 18, 204, 32, 87, 90, 80, 60, 78};
+int datos []={2, 43,171, 209, 53, 204, 32, 87, 90, 80, 60};
   //int longitud=fun_longi(datos);
 	//Serial.println(datos[11]);
   //Serial.println(longitud);
@@ -21,7 +21,7 @@ int datos []={2, 4, 1, 18, 204, 32, 87, 90, 80, 60, 78};
         String binario;
         binario=int2bin(entero);
         Serial.println(entero);
-        //Serial.println(binario);  
+       // Serial.println(binario);  
       digitalWrite(6, HIGH);	//Pin para la señal que manda los datos del 74HC595 almacenados
 
 }    
