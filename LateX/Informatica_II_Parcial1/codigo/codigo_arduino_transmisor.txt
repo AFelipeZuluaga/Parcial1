@@ -1,0 +1,49 @@
+    
+void setup()
+{
+    Serial.begin(9600);
+  pinMode(8, OUTPUT);
+  pinMode(7, OUTPUT);  
+  pinMode(6, OUTPUT);	//Pin para la señal que manda los datos del 74HC595 almacenados
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop(){
+int datos []={2, 43, 171, 209, 53, 204, 171, 87, 90, 80, 60};
+  
+	for(long long unsigned i=0; i<11;i++){	//Cambiar la longitud
+
+        int entero=datos[i];
+        String binario;
+        binario=int2bin(entero);
+        Serial.println(entero);
+      digitalWrite(6, HIGH);	//Pin para la señal que manda los datos del 74HC595 almacenados
+}    
+}
+
+String int2bin(int entero)
+{
+  String binario="AAAAAAAA";
+  int f=0;
+    for(int i=7; i>=0; i--){;
+        if(entero>=pow(2, i)){
+            binario[f]='1';
+          	digitalWrite(8, HIGH);
+          f++;
+            entero=entero-pow(2,i);
+        }
+        else{
+            binario[f]='0';
+          	digitalWrite(8, LOW);
+          f++;
+        }
+                            
+  		delay(25);
+        digitalWrite(7, HIGH);	//señal del reloj
+      	digitalWrite(6, LOW); //Bajamos la señal que lleva los 8 bits del 74HC595
+      	delay(125);
+        digitalWrite(7, LOW);
+        delay(125);
+    }
+    return binario;
+}
