@@ -1,0 +1,83 @@
+
+  String uno="AAAAAAAA";
+  String dos="AAAAAAAA";
+  String tres="AAAAAAAA";
+  String cuatro="AAAAAAAA";
+  String cinco="AAAAAAAA";
+	String seis="AAAAAAAA";	//String de más que guarda la clave
+	String siete="AAAAAAAA";	
+
+	int uno_ent=0;
+	int dos_ent=0;
+	int tres_ent=0;
+	int cuatro_ent=0;
+	int cinco_ent=0;
+
+    int mayor=0;
+//
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(3, INPUT);	//Señal de bandera
+  pinMode(7, INPUT);	//Señal de reloj
+  pinMode(8, INPUT);	//Señal de datos
+}
+
+void loop()
+{      
+    if(digitalRead(3)){
+    //Cambie los String uno-cinco por enteros
+    uno_ent= str2int(uno);
+    dos_ent=str2int(dos);
+    tres_ent=str2int(tres);
+    cuatro_ent=str2int(cuatro);
+    cinco_ent=str2int(cinco);   
+
+    //Compare los enteros uno-cinco para saber cuál es mayor
+  	mayor=uno_ent;
+    if(dos_ent>mayor)		mayor=dos_ent;
+    if(tres_ent>mayor)		mayor=tres_ent;
+    if(cuatro_ent>mayor)	mayor=cuatro_ent;
+    if(cinco_ent>mayor)		mayor=cinco_ent;
+      
+      Serial.println(mayor);      
+  }  
+   
+  uno=dos;
+  dos=tres;
+  tres=cuatro;
+  cuatro=cinco;
+  cinco=seis;
+  seis=siete;
+    
+  int j=0;
+    while(j<8){
+      if(digitalRead(7)){     	//Si el reloj es 1.  
+        if(digitalRead(8)){		//Si el dato es 1.
+          siete[j]='1';
+        }
+        else{				//Si el dato es 0
+          siete[j]='0';
+        } 
+        j++;
+        delay(137);		//Para asegurar que en la próxima lectura del reloj, este ya haya bajado a 0.
+      }
+  }        
+}
+
+int str2int(String binario){
+	int entero=0;
+  int suma=128;
+  if(binario[0]=='A'){
+    entero=0;
+  }
+  else{
+    for(int i=0; i<8; i++){
+      if(binario[i]=='1'){  
+      	entero=entero+suma;        
+      }   
+        suma=suma/2; 
+    }    
+  }
+  return entero;
+}
