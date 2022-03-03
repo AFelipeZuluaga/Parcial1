@@ -8,7 +8,6 @@
 
 
 
-
 \begin{document}
 
 \begin{titlepage}
@@ -45,16 +44,24 @@
 \newpage
 
 \section{INTRODUCCIÓN}
-En este informe se habla sobre el análisis realizado al proyecto parcial que se entregará próximamente. Se estudia el funcionamiento del circuito integrado 74HC595, se profundiza en el funcionamiento del Arduino y en comandos para su funcionamiento, a su uso en la plataforma de Tinkercad y se observa la interconexión entre arduinos.
+En este documento se presenta el informe completo y detallado del sistema de transmisión y recepción de datos del parcial 1 del curso de Informática II. Este documento es la implementación al proyecto parcial al cual se le hizo el análisis anteriormente.\\
+
+Se realiza un sistema de transmisión y recepción de datos utilizando un circuito integrado 74HC595 para la paralelización de datos mandados previamente desde el arduino transmisor utilizando una señal de reloj para la recolección de estos; se utilizan circuitos integrados de compuertas lógicas inversoras y AND para la verificación de la clave, por tanto la generación de la señal de bandera que se ingresa al arduino receptor. \\
+
+En el arduino transmisor se generan la señal de los datos, y dos señales para la recolección adecuada de los datos, una que da razón del tiempo por bit y la otra del tiempo por Byte, y en el circuito receptor se almacena el dato solicitado, en este caso es el mayor dato de los cinco números anteriores a la clave.
+
 
 \section{RESÚMEN}
-El informe busca obtener herramientas y conocimiento que ayuden a realizar el proyecto del curso de Informática II. Se analiza el proyecto de forma general y además se profundiza en los puntos referentes al circuito integrado 74HC595, en las señales de dato y de reloj y en la interconexión entre arduinos, además de sus códigos. Se concluye la utilidad de las herramientas Tinkercad, Arduino, C++ y del circuito integrado 74HC595.
+El informe busca obtener herramientas y conocimiento que ayuden a realizar el proyecto del curso de Informática II. Se analiza a profundidad el sistema de comunicación completo, logrando  establecer la transmisión de los datos entre transmisor y receptor mediante la señal de reloj,  haciendo uso del lenguaje en C++, Arduino, la plataforma Tinkercad y circuitos integrado para ello.
+
 
 \section{OBJETIVOS}
 
 \subsection{GENERAL}
 
-Adquirir herramientas y conocimientos de apoyo para el análisis teórico del desarrollo del proyecto parcial.
+Adquirir conocimientos de sistemas de transmisión por medio de sistemas integrados.
+
+ayúdeme herramientas y conocimientos de apoyo para el análisis teórico del desarrollo del proyecto parcial.
 
 \subsection{ESPECÍFICOS}
 
@@ -62,10 +69,16 @@ Adquirir herramientas y conocimientos de apoyo para el análisis teórico del de
 
         \item Desarrollar la capacidad de solución de problemas.
         
-        \item Evaluar la capacidad del estudiante para trabajar con Arduino.
+        \item Adquirir conocimientos en la utilización de Arduino.
         
-        \item Usar de manera adecuada las funciones de la
-plataforma Arduino explicadas en clase que permiten controlar el puerto serial y los puertos digitales.
+        \item Entender sobre la interconexión entre Arduinos y entre arduinos con circuitos integrados.
+        
+        \item Manejar adecuadamente la plataforma de Tinkercad.
+        
+        \item Entender el uso del circuito integrado 74HC595.
+        
+        \item Comprender la utilización y la utilidad de las compuertas lógicas y de sus circuitos integrados.
+        
 \end{itemize}
 
 \section{METODOLOGÍA}
@@ -166,7 +179,7 @@ Las figuras 4, 5 y 6 muestran el código en el arduino de transmisión.\\
 \newpage
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{codigo_arduino1_1.PNG}
+\includegraphics[width=6cm]{codigo_arduino1_1.PNG}
 \centering
 \caption{Primera parte del código del Arduino transmisor.}
 \label{fig:codigo_arduino1_1.PNG}
@@ -197,7 +210,7 @@ La figura 7 muestra el código en el arduino de recepción.\\
 
 
 \begin{figure}[h]
-\includegraphics[width=7cm]{codigo_arduino2.PNG}
+\includegraphics[width=6cm]{codigo_arduino2.PNG}
 \centering
 \caption{código del Arduino receptor.}
 \label{fig:codigo_arduino2.PNG}
@@ -212,26 +225,24 @@ Se usan 3 compuertas inversoras y 7 compuertas AND, siguiendo el esquema de la f
 
 
 \begin{figure}[h]
-\includegraphics[width=7cm]{compuertas_sistema_desencriptación.PNG}
+\includegraphics[width=6cm]{compuertas_sistema_desencriptación.PNG}
 \centering
-\caption{}
+\caption{Comopuertas del sistema de desencriptación.}
 \label{fig:compuertas_sistema_desencriptación.PNG}
 \end{figure}
-
-
 
 El esquema de arduino para la implementación del esquema de la figura anterior junto con las compuertas lógicas es el de la figura XXXXX, y el código que se implementó para observar el buen funcionamiento del circuito es el de la figura XXXX, en el cual se mandan los bits correspondientes a la clave individual del grupo, el número 171, el cual en bits corresponde al 10101011.
 
 
 \begin{figure}[h]
-\includegraphics[width=7cm]{sistema_desencriptacion.PNG}
+\includegraphics[width=6cm]{sistema_desencriptacion.PNG}
 \centering
 \caption{Sistema de desencriptación mediante compuertas lógicas.}
 \label{fig:sistema_desencriptacion.PNG}
 \end{figure}
 
 \begin{figure}[h]
-\includegraphics[width=8cm]{Desencrip1.JPG}
+\includegraphics[width=7cm]{Desencrip1.JPG}
 \centering
 \caption{Código de prueba para la bandera del sistema de desencriptación.}
 \label{fig:Desencrip1.PNG}
@@ -249,7 +260,7 @@ Para el arduino transmisor, se utilizaron 3 salidas, correspondientes a la seña
 
 
 \begin{figure}[h]
-\includegraphics[width=7cm]{arduino_transmisor.PNG}
+\includegraphics[width=6cm]{arduino_transmisor.PNG}
 \centering
 \caption{Circuito con Arduino configurado como transmisor.}
 \label{fig:arduino_transmisor.PNG}
@@ -259,17 +270,17 @@ La señal del pin 8 es la señal que entrega los datos en bits de los valores de
 
 
 \begin{figure}[h]
-\includegraphics[width=11cm]{Transmisor1.JPG}
+\includegraphics[width=9cm]{codigo_transmisor_1.PNG}
 \centering
-\caption{}
+\caption{Primera parte del código del Arduino transmisor.}
 \label{fig:codigo_transmisor_1.PNG}
 \end{figure}
 
 
 \begin{figure}[h]
-\includegraphics[width=11cm]{Transmisor2.JPG}
+\includegraphics[width=9cm]{codigo_transmisor_2.PNG}
 \centering
-\caption{}
+\caption{Segunda parte del código del Arduino transmisor.}
 \label{fig:codigo_transmisor_2.PNG}
 \end{figure}
 
@@ -280,9 +291,9 @@ Por medio de las 3 señales antes mensionadas y de la forma antes explicada se r
 \subsubsection{Arduino transmisor y Circuito 74HC595}
 
 \begin{figure}[h]
-\includegraphics[width=11cm]{Transmisor2.JPG}
+\includegraphics[width=4cm]{conexion_arduino_con_74HC595.PNG}
 \centering
-\caption{}
+\caption{Conexión entre el Arduino transmisor y el circuito integrado 74HC595.}
 \label{fig:conexion_arduino_con_74HC595.PNG}
 \end{figure}
 
@@ -290,9 +301,52 @@ En la interconexión del arduino con el circuito integrado 74HC595, se intercone
 
 Se agregan LEDs para observar la serie de bits que arroja el integrado. Estos bits están ordenados por orden de peso de bit.
 
-\subsubsection{Arduino transmisor y Circuito 74HC595}
+\subsubsection{Integrado 74HC595 y circuito de desencriptación}
 
-Para realizar el circuito de desencriptación, se sigue el esquema de la figura XXXXXXX. Este esquema cambió respecto al numeral 1 en que se modifica un circuito de 4 AND de 2 entradas por un circuito de 2 AND de 4 entradas.
+Para realizar el circuito de desencriptación, se sigue el esquema de la figura XXXXXXX. Se modifica este esquema respecto al numeral 1 en que se cambia un circuito de 4 AND de 2 entras (74HC08) por un circuito de 2 AND de 4 entradas (74HC21).
+
+
+\begin{figure}[h]
+\includegraphics[width=6cm]{compuertas_sistema_completo.PNG}
+\centering
+\caption{Compuertas lógicas para el sistema completo.}
+\label{fig:compuertas_sistema_completo.PNG}
+\end{figure}
+
+La conexión del circuito integrado 74HC595 y del sistema de desencriptación se observa en la figura XXXXX, en donde se observa con cables cafés que los bits 1, 3 y 5 (derecha a izquierda) se dirigen al integrado correspondiente al de las compuertas lógicas inversoras. Esto es lo observado en el esquema de la figura anterior.
+
+
+\begin{figure}[h]
+\includegraphics[width=9cm]{74HC595 y sistema desencriptacion.PNG}
+\centering
+\caption{Interconexión del sistema de paralelización y del sistema de desencriptación.}
+\label{fig:74HC595 y sistema desencriptacion.PNG}
+\end{figure}
+
+Se agregó un LED a la señal de salida del esquema de la figura XXXXXX para comprobar el valor de la bandera.
+\newpage
+\subsubsection{Arduino receptor}
+
+
+\begin{figure}[h]
+\includegraphics[width=7cm]{sistema_completo.PNG}
+\centering
+\caption{Sistema completo.}
+\label{fig:sistema_completo.PNG}
+\end{figure}
+
+
+El Arduino receptor es el encargado de realizar el proceso en el que se identifica cual es el número mayor entre los últimos 5 números antes de que aparezca la bandera, es por ello por lo que el código del Arduino receptor es el observado en las figuras XXXX:\\
+
+
+
+La estructura del circuito receptor es la siguiente:\\
+
+Inicialmente hay siete variables tipo string almacenadas en cada una de ellas la letra \textit{‘A’}, 8 veces, con el fin de capturar los 8 bits de entrada de cada dato; es decir, las primeras variables se crean para almacenar 5 datos antes de que aparezca la bandera, el string seis se crea para almacenar la clave, y el string siete almacena el dato posterior a la clave. El dato, como se mencionó antes, es 171. \\
+
+En la función \textit{setup} en el código de Arduino se inicializa la comunicación serial, se define los pines 3, 7, 8 como entrada que corresponde a la señal de bandera, de reloj y de datos respectivamente. En la función \textit{loop} se observa si el bit de la bandera está en '1'. De ser así, se cambia el tipo de dato de los datos de string a entero (de las variables uno-siete a uno_ent-siete_ent) con la función str2int, y posteriormente se hacen una serie de if para tomar el valor de la variable mayor. En la función de str2int se toma en cuenta que los strings que no tengan bits sino un 'A' toma el valor de entero de 0, para que al comparar con el valor más grande este no se tome en cuenta.
+
+Fuera de la condición de que la bandera sea '1', se realiza la toma de datos. Para esto, primero se trasladan las variables, para actualizar el dato más actual y desechar el dato más antiguo. Mediante un ciclo \textit{while} se establece la simulación del reloj y se toma los datos en cada flanco de subida, generando un delay de 550 milisegundos para dar el espacio de tiempo pertinente para que el reloj vuelva al valor de bajo y así almacenar en la variable siete el dato de entrada; esto se realiza comparando si lo que llega es un '1' o '0', y este valor se agrega en la posición pertinente del string siete.
 
 
 \section{CONCLUSIONES} \label{conclulsion}
